@@ -1,30 +1,35 @@
-import './App.css';
+import React from 'react';
+import NavBar from './components/NavBar/NavBar'
+import ItemListContainer from './components/ItemListContainer/ItemListContainer';
+import CartView from './components/CartView/CartView';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Navbar from './componets/NavBar/NavBar';
-import ItemListContainer from './componets/ItemListContainer/ItemListContainer';
-import ItemDetailContainer from './componets/ItemDetailContainer/ItemDetailContainer'
-import { BrowserRouter, Route, Router } from 'react-router-dom';
+import ItemDetailContainer from './components/ItemDetailContainer/ItemDetailContainer';
+import { HashRouter, Route, Routes } from 'react-router-dom';
+import { CartContextProvider } from './context/CartContext';
+import Footer from './components/Footer/footer';
+import CheckOut from './components/CheckOut/';
 
 function App() {
   return (
-    <div className="App">
-      <BrowserRouter>
-      <Navbar />
-      <Router>
-        <Route path='/' element={<ItemListContainer />}/>
-        <Route path='/categoria/:categoriaId' element={<ItemListContainer/>}/>
-        <Route path='/item/:itemId' element={<ItemDetailContainer/>}/>
-        <Route path='*' element={<h1>404  NOT FOUND</h1>}/>
-      </Router>
-      </BrowserRouter>
-    </div>
+    <>
+      <CartContextProvider>
+        <HashRouter>
+          <NavBar />
+          <main>
+            <Routes>
+              <Route path="/checkout" element={<CheckOut />} />
+              <Route path="/item/:itemid" element={<ItemDetailContainer greeting="Detalle de producto" />} />
+              <Route path="/" element={<ItemListContainer greeting="Menú de Malanzan Shop" />} />
+              <Route path="/cart" element={<CartView greeting="Este es su carrito" />} />
+              <Route path="/category/:categoryid" element={<ItemListContainer greeting="Categoría" />} />
+            </Routes>
+            <hr />
+          </main>
+          <Footer />
+        </HashRouter>
+      </CartContextProvider>
+    </>
   );
 }
 
 export default App;
-
-
-
-//<ItemListContainer greeting={"Bienvenidos a Shop Malanzan"}/>
-//<ItemCount initial={1} stock={10} onAdd={(quantity)=> console.log('Cantidad agregada',quantity)}/>
-//<Item />
