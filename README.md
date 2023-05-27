@@ -2,7 +2,7 @@
 
 Video demostracion de lo desarrollado:
 
-
+![ezgif-5-34b8f0a8f1](https://github.com/Erikk96/PFReact/assets/116232270/263b6a03-19da-4e30-b31b-e8d4c56aec03)
 
 ## Este proyecto utilizo las siguientes dependecias instaladas por node:
 
